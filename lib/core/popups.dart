@@ -261,7 +261,8 @@ class Popup {
                         height: 48,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Gönderme işlemleri
+                            Navigator.of(context).pop();
+                            Cards.showComplaintModal(context);
                           },
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(

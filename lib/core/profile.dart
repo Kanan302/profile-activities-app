@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:task/core/popups.dart'; 
+import 'package:task/core/popups.dart';
 
-class ProfilePopup {
-  static void show(BuildContext context, List<String>? reasons) { 
+class ProfileInfo {
+  static void show(BuildContext context, List<String>? reasons,
+      List<Map<String, dynamic>> data, int index) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -43,15 +44,15 @@ class ProfilePopup {
                 SizedBox(
                   width: 128,
                   height: 128,
-                  child: Image.asset('assets/images/png/tural-photo.png'),
+                  child: Image.asset(data[index]['profile_img']),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Tural Salimli, 27',
-                      style: TextStyle(
+                    Text(
+                      "${data[index]['name']}, ${data[index]['age']}",
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
@@ -59,12 +60,14 @@ class ProfilePopup {
                     const SizedBox(
                       width: 8,
                     ),
-                    SvgPicture.asset('assets/images/svg/boss.svg'),
+                    if (data[index]['badge'] != null &&
+                        data[index]['badge'] != '')
+                      SvgPicture.asset(data[index]['badge'])
                   ],
                 ),
-                const Text(
-                  "Yaxınlıqda",
-                  style: TextStyle(color: Color(0xFF919191), fontSize: 18),
+                Text(
+                  data[index]['status'] ?? '',
+                  style: const TextStyle(color: Color(0xFF919191)),
                 ),
                 const SizedBox(
                   height: 20,
@@ -75,10 +78,10 @@ class ProfilePopup {
                   child: Image.asset('assets/images/png/likebutton.png'),
                 ),
                 const SizedBox(height: 8),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Bio',
                       style: TextStyle(
                         color: Color(0XFF919191),
@@ -86,14 +89,14 @@ class ProfilePopup {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     SizedBox(
                       width: 350,
                       child: Text(
-                        "Cat-lover, Designer, Weekend fan and biologist",
-                        style: TextStyle(
+                        data[index]['bio_text'],
+                        style: const TextStyle(
                           color: Color(0xFF5E5E5E),
                           fontSize: 18,
                         ),

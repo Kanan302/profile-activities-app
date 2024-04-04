@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'profile.dart';
+import '../core/profile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Map<String, dynamic>>? _data;
+  List<Map<String, dynamic>>? data;
   List<String>? reasons;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -22,11 +22,11 @@ class _HomePageState extends State<HomePage> {
       String jsonData = await rootBundle.loadString('assets/data/data.json');
       Map<String, dynamic> parsedData = json.decode(jsonData);
       setState(() {
-        _data = List<Map<String, dynamic>>.from(parsedData['users']);
+        data = List<Map<String, dynamic>>.from(parsedData['users']);
         reasons = List<String>.from(parsedData['reasons']);
       });
     } catch (e) {
-      Exception("Error loading data: ${e.toString()}");
+      print("Error loading data: ${e.toString()}"); // Print error message
     }
   }
 
@@ -41,16 +41,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: _scaffoldKey,
       body: SafeArea(
-        child: _data == null
+        child: data == null
             ? const Center(child: CircularProgressIndicator())
             : Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: ListView.builder(
-                  itemCount: _data!.length,
+                  itemCount: data!.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        ProfilePopup.show(context, reasons);
+                        ProfileInfo.show(context, reasons, data!, index); // Pass data and index to ProfileInfo.show
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -69,11 +69,11 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           child: ListTile(
-                            leading: Image.asset(_data![index]['profile_img']),
+                            leading: Image.asset(data![index]['profile_img']),
                             title: Row(
                               children: [
                                 Text(
-                                  "${_data![index]['name']}, ${_data![index]['age']}",
+                                  "${data![index]['name']}, ${data![index]['age']}",
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -81,13 +81,13 @@ class _HomePageState extends State<HomePage> {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                if (_data![index]['badge'] != null &&
-                                    _data![index]['badge'] != '')
-                                  SvgPicture.asset(_data![index]['badge'])
+                                if (data![index]['badge'] != null &&
+                                    data![index]['badge'] != '')
+                                  SvgPicture.asset(data![index]['badge'])
                               ],
                             ),
                             subtitle: Text(
-                              _data![index]['status'] ?? '',
+                              data![index]['status'] ?? '',
                               style: const TextStyle(color: Color(0xFF919191)),
                             ),
                             trailing: SvgPicture.asset(
