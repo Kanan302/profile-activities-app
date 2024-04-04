@@ -1,23 +1,28 @@
 [
   {
-    "title": "Sevinc Alieva, 23",
-    "subtitle": "Yaxınlıqda",
-    "leading": "assets/images/png/first.png",
-    "trailing": "assets/images/svg/comment.svg",
-    "badge": "assets/images/svg/verified.svg"
+    "name": "Sevinc Alieva",
+    "age": 23,
+    "status": "Yaxınlıqda",
+    "profile_img": "assets/images/png/first.png",
+    "badge": "assets/images/svg/verified.svg",
+    "like_count": 400,
+    "bio_text": "Love Taylor Swift"
   },
   {
-    "title": "Gunel M-va, 24",
-    "subtitle": "100 metr",
-    "leading": "assets/images/png/second.png",
-    "trailing": "assets/images/svg/comment.svg",
-    "badge": "assets/images/svg/vip.svg"
+    "name": "Gunel M-va",
+    "age": 24,
+    "status": "100 metr",
+    "profile_img": "assets/images/png/second.png",
+    "badge": "assets/images/svg/vip.svg",
+    "like_count": 400,
+    "bio_text": "One day I'll die, but not my ideas"
   },
   {
-    "title": "Shefeg Memmedli, 30",
-    "subtitle": "150 metr",
-    "leading": "assets/images/png/third.png",
-    "trailing": "assets/images/svg/comment.svg",
-    "badge": ""
+    "name": "Shefeg Memmedli",
+    "age": 30,
+    "status": "150 metr",
+    "profile_img": "assets/images/png/third.png",
+    "badge": "",
+    "like_count": 400
   }
 ]
