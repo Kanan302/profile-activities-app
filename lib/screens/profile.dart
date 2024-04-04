@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:task/core/showModalBottomSheet.dart';
+import 'package:task/core/popups.dart'; 
 
 class ProfilePopup {
-  static void show(BuildContext context) {
+  static void show(BuildContext context, List<String>? reasons) { 
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
         return SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height * 1.5,
+            height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
@@ -18,23 +18,27 @@ class ProfilePopup {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Profil',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0,
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Profil',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   width: 128,
@@ -128,13 +132,13 @@ class ProfilePopup {
                         Navigator.pop(context);
                         switch (value) {
                           case 0:
-                            PopupHandler.handleNotification(context);
+                            Popup.handleNotification(context);
                             break;
                           case 1:
-                            PopupHandler.handleBlock(context);
+                            Popup.handleBlock(context);
                             break;
                           case 2:
-                            // Şikayet et seçeneği seçildiğinde yapılacak işlemler
+                            Popup.showComplaintModal(context, reasons ?? []);
                             break;
                         }
                       },

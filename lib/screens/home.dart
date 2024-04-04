@@ -13,14 +13,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>>? _data;
+  List<String>? reasons;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> _loadDataFromJson() async {
     try {
-      String jsonData = await rootBundle.loadString('assets/data.json');
+      String jsonData = await rootBundle.loadString('assets/data/data.json');
+      Map<String, dynamic> parsedData = json.decode(jsonData);
       setState(() {
-        _data = List<Map<String, dynamic>>.from(json.decode(jsonData));
+        _data = List<Map<String, dynamic>>.from(parsedData['users']);
+        reasons = List<String>.from(parsedData['reasons']);
       });
     } catch (e) {
       Exception("Error loading data: ${e.toString()}");
@@ -47,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        ProfilePopup.show(context);
+                        ProfilePopup.show(context, reasons);
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16.0, right: 16.0),

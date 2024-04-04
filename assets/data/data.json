@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "name": "Sevinc Alieva",
+      "age": 23,
+      "status": "Yaxınlıqda",
+      "profile_img": "assets/images/png/first.png",
+      "badge": "assets/images/svg/verified.svg",
+      "like_count": 400,
+      "bio_text": "Love Taylor Swift"
+    },
+    {
+      "name": "Gunel M-va",
+      "age": 24,
+      "status": "100 metr",
+      "profile_img": "assets/images/png/second.png",
+      "badge": "assets/images/svg/vip.svg",
+      "like_count": 400,
+      "bio_text": "One day I'll die, but not my ideas"
+    },
+    {
+      "name": "Shefeg Memmedli",
+      "age": 30,
+      "status": "150 metr",
+      "profile_img": "assets/images/png/third.png",
+      "badge": "",
+      "like_count": 400
+    }
+  ],
+  "reasons": [
+    "Profil fotosunda çılpaqlıq, intim və etik olmayan məzmun var",
+    "İstifadəçi adında uyğun olmayan ifadələr, söyüş, təhqir var",
+    "Mesajlarında kobudluq, əxlaqsız təklif və söyüş var",
+    "İstifadəçi məni konum (?) bilgisi ilə təqib edir",
+    "Məni və ya başqalarını təhqir edir",
+    "Mən və başqa birinin foto və ad soyadını istifadə edir",
+    "Spam / Fırıldaqçılıq",
+    "Başqa səbəb"
+  ]
+}
